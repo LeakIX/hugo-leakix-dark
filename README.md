@@ -73,11 +73,25 @@ Add to your `config.toml`:
 theme = "leakix-dark"
 ```
 
-### Method 3: Download
+### Method 3: Download Release
 
 Download the latest release from
-[GitHub Releases](https://github.com/LeakIX/leakix-dark-theme/releases) and
-extract to `themes/leakix-dark`.
+[GitHub Releases](https://github.com/LeakIX/leakix-dark-theme/releases):
+
+1. Go to the
+   [Releases page](https://github.com/LeakIX/leakix-dark-theme/releases)
+2. Download the latest `.tar.gz` or `.zip` file
+3. Extract to `themes/leakix-dark/` in your Hugo site
+4. Add `theme = "leakix-dark"` to your `config.toml`
+
+Each release includes:
+
+- Complete theme files
+- Installation guide
+- Documentation
+- Example configurations
+
+Releases are automatically created on every update to the main branch.
 
 ## Configuration
 
@@ -281,6 +295,19 @@ leakix-dark/
 - Firefox (latest 2 versions)
 - Safari (latest 2 versions)
 - Mobile browsers (iOS Safari, Chrome Mobile)
+
+## Releases
+
+This repository uses automated releases:
+
+- **Automatic**: New releases are created on every push to main branch
+- **Versioning**: `vYYYY.MM.DD-{commit}` format (e.g., `v2024.01.15-a1b2c3d`)
+- **Assets**: Each release includes `.tar.gz` and `.zip` archives
+- **Changelog**: Generated from commit messages since last release
+- **Contents**: Clean theme files, documentation, and installation guide
+
+Download the latest release:
+[GitHub Releases](https://github.com/LeakIX/leakix-dark-theme/releases/latest)
 
 ## Contributing
 

@@ -124,7 +124,7 @@ jobs:
               body: `🚀 Preview deployment ready!\n\n[View Preview](${previewUrl})`
             });
 
-  release:
+  deploy-pages:
     needs: test
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -176,3 +176,157 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  create-release:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: make install-deps
+
+      - name: Format code
+        run: |
+          make prettify
+          make fix-trailing-whitespace
+
+      - name: Generate version
+        id: version
+        run: |
+          # Generate version based on date and short commit hash
+          VERSION="v$(date +%Y.%m.%d)-$(git rev-parse --short HEAD)"
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "Generated version: ${VERSION}"
+
+      - name: Create theme package
+        run: |
+          # Create clean theme directory for release
+          mkdir -p release-package
+
+          # Copy theme files (excluding development files)
+          cp -r leakix-dark release-package/
+          cp README.md release-package/
+          cp LICENSE release-package/
+          cp GITHUB_PAGES_SETUP.md release-package/
+
+          # Create installation instructions
+          cat > release-package/INSTALL.md << 'EOF'
+          # LeakIX Dark Theme - Installation Guide
+
+          ## Quick Install
+
+          ### Method 1: Hugo Module (Recommended)
+
+          ```bash
+          # Initialize Hugo modules
+          hugo mod init github.com/yourusername/yourproject
+
+          # Add theme to config.toml
+          echo '[module]
+            [[module.imports]]
+              path = "github.com/LeakIX/leakix-dark-theme"' >> config.toml
+
+          # Update modules
+          hugo mod get -u
+          ```
+
+          ### Method 2: Git Submodule
+
+          ```bash
+          git submodule add https://github.com/LeakIX/leakix-dark-theme.git themes/leakix-dark
+          echo 'theme = "leakix-dark"' >> config.toml
+          ```
+
+          ### Method 3: Download Release
+
+          1. Extract this release to `themes/leakix-dark/` in your Hugo site
+          2. Add `theme = "leakix-dark"` to your config.toml
+
+          ## Next Steps
+
+          See README.md for complete configuration options and examples.
+          Demo site: https://leakix.github.io/leakix-dark-theme/
+          EOF
+
+          # Create release archive
+          cd release-package
+          tar -czf ../leakix-dark-theme-${{ steps.version.outputs.version }}.tar.gz .
+          zip -r ../leakix-dark-theme-${{ steps.version.outputs.version }}.zip .
+          cd ..
+
+      - name: Generate changelog
+        id: changelog
+        run: |
+          # Get commits since last tag, or all commits if no tags
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          if [ -z "$LAST_TAG" ]; then
+            COMMITS=$(git log --pretty=format:"- %s (%h)" --no-merges)
+          else
+            COMMITS=$(git log ${LAST_TAG}..HEAD --pretty=format:"- %s (%h)" --no-merges)
+          fi
+
+          # Create changelog
+          CHANGELOG="## Changes in ${{ steps.version.outputs.version }}
+
+          ${COMMITS}
+
+          ## Installation
+
+          Choose one of the installation methods:
+
+          ### Hugo Module (Recommended)
+          \`\`\`toml
+          [module]
+            [[module.imports]]
+              path = \"github.com/LeakIX/leakix-dark-theme\"
+          \`\`\`
+
+          ### Git Submodule
+          \`\`\`bash
+          git submodule add https://github.com/LeakIX/leakix-dark-theme.git themes/leakix-dark
+          \`\`\`
+
+          ### Download
+          Download and extract to \`themes/leakix-dark/\` in your Hugo site.
+
+          ## Demo
+          View the live demo at: https://leakix.github.io/leakix-dark-theme/
+
+          ## Documentation
+          See the [README](https://github.com/LeakIX/leakix-dark-theme#readme) for complete configuration options."
+
+          # Save changelog to file and output
+          echo "$CHANGELOG" > changelog.md
+          echo "changelog<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGELOG" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          name: 'LeakIX Dark Theme ${{ steps.version.outputs.version }}'
+          body: ${{ steps.changelog.outputs.changelog }}
+          draft: false
+          prerelease: false
+          files: |
+            leakix-dark-theme-${{ steps.version.outputs.version }}.tar.gz
+            leakix-dark-theme-${{ steps.version.outputs.version }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

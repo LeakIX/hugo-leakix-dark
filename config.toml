@@ -1,0 +1,29 @@
+# Hugo module configuration for the theme
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = "0.120.0"
+
+  [[module.mounts]]
+    source = "leakix-dark/assets"
+    target = "assets"
+
+  [[module.mounts]]
+    source = "leakix-dark/layouts"
+    target = "layouts"
+
+  [[module.mounts]]
+    source = "leakix-dark/static"
+    target = "static"
+
+  [[module.mounts]]
+    source = "leakix-dark/i18n"
+    target = "i18n"
+
+  [[module.mounts]]
+    source = "leakix-dark/data"
+    target = "data"
+
+  [[module.mounts]]
+    source = "leakix-dark/archetypes"
+    target = "archetypes"

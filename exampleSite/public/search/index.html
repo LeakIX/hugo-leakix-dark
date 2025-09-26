@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Search |LeakIX Dark Theme Demo</title>
+
+    <link rel="canonical" href="http://localhost:1313/search/" />
+    <link rel="icon" type="image/x-icon" href="http://localhost:1313/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="http://localhost:1313/favicon-32x32.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="http://localhost:1313/favicon-16x16.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="http://localhost:1313/images/logo.png" />
+
+    
+
+
+
+
+
+<meta name="description" content="Search through site content" />
+<meta name="author" content="Your Name" />
+
+
+<meta
+  property="og:type"
+  content="
+    website
+  " />
+<meta property="og:url" content="http://localhost:1313/search/" />
+<meta property="og:title" content="Search" />
+<meta property="og:description" content="Search through site content" />
+
+
+
+
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="http://localhost:1313/search/" />
+<meta property="twitter:title" content="Search" />
+<meta property="twitter:description" content="Search through site content" />
+
+
+  <meta name="twitter:site" content="https://twitter.com/example" />
+
+
+
+
+
+
+<meta name="robots" content="index, follow" />
+
+<meta name="language" content="en" />
+
+
+    
+
+
+
+
+
+
+
+
+    
+<style>
+  :root {
+    --primary-color: #fab741;
+    --secondary-color: #ff8c00;
+    --accent-color: #e09b2a;
+    --text-color: #ffffff;
+    --bg-color: #181f27;
+    --bg-dark-color: #090e15;
+    --bg-light-color: #353a40;
+    --card-bg-color: #1f2731;
+    --footer-bg-color: #010203;
+    --text-light-color: #707070;
+    --text-dark-color: #090e15;
+    --border-color: #2a3138;
+    
+    
+    
+    
+    --font-family: ZgotmplZ;
+    
+    
+    
+    
+    
+    
+  }
+</style>
+
+
+
+
+    
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet" />
+
+    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap"
+      rel="stylesheet" />
+
+    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+
+    
+    
+    <link rel="stylesheet" href="/scss/base.min.154e0da3d5ba1aa9f0f9c50fccddc7af53962d1e9d0cdb38ccd3f16ab3f551b7.css" />
+
+    
+
+    
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid">
+    <a
+      class="navbar-brand d-flex align-items-center p-2"
+      href="http://localhost:1313/">
+      <img
+        src="http://localhost:1313/images/logo.png"
+        alt="LeakIX"
+        class="navbar-logo" />
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+          
+        
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/posts/">Posts</a>
+            </li>
+          
+        
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">Categories</a>
+            </li>
+          
+        
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">Tags</a>
+            </li>
+          
+        
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">About</a>
+            </li>
+          
+        
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/search/">Search</a>
+            </li>
+          
+        
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/ai-integration/">AI Integration</a>
+            </li>
+          
+        
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="https://leakix.net" target="_blank">
+            LeakIX
+            <i class="fas fa-external-link-alt ms-1 small"></i>
+          </a>
+        </li>
+      </ul>
+
+      <form
+        class="d-flex ms-3 search-form"
+        action="/search/"
+        method="get">
+        <div class="input-group">
+          <input
+            class="form-control"
+            type="search"
+            name="q"
+            placeholder="Search..." />
+          <button class="btn btn-search" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+
+    <main>
+      
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <h1 class="mb-4">Search Results</h1>
+
+        <div class="search-container mb-4">
+          <form
+            class="search-form"
+            action="/search/"
+            method="get">
+            <div class="input-group">
+              <input
+                class="form-control form-control-lg"
+                type="search"
+                name="q"
+                id="search-input"
+                placeholder="Search posts..."
+                value="" />
+              <button class="btn btn-search btn-lg" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div id="search-stats" class="mb-3"></div>
+
+        <div id="search-results">
+          <div class="text-center py-5">
+            <div class="spinner-border text-warning" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </main>
+
+    <footer>
+  <div class="container-fluid py-4">
+    <div class="row justify-content-center">
+      <div class="col-auto">
+        <div class="social-links d-flex gap-3">
+          
+            <a
+              href="https://twitter.com/example"
+              target="_blank"
+              class="social-link">
+              <i class="fab fa-twitter"></i>
+            </a>
+          
+          
+            <a
+              href="https://github.com/example"
+              target="_blank"
+              class="social-link">
+              <i class="fab fa-github"></i>
+            </a>
+          
+          
+            <a
+              href="https://linkedin.com/in/example"
+              target="_blank"
+              class="social-link">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          
+          <a href="/index.xml" class="social-link">
+            <i class="fas fa-rss"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    
+  <script>
+    (function () {
+      const searchInput = document.getElementById('search-input');
+      const searchResults = document.getElementById('search-results');
+      const searchStats = document.getElementById('search-stats');
+
+      
+      function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+      }
+
+      
+      function formatDate(dateStr) {
+        const date = new Date(dateStr);
+        return date.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        });
+      }
+
+      
+      function highlight(text, query) {
+        if (!query) return text;
+        const words = query.split(/\s+/).filter(w => w.length > 0);
+        let result = text;
+        words.forEach(word => {
+          const regex = new RegExp(`(${word})`, 'gi');
+          result = result.replace(regex, '<mark>$1</mark>');
+        });
+        return result;
+      }
+
+      
+      async function performSearch(query) {
+        if (!query || query.trim().length === 0) {
+          searchResults.innerHTML =
+            '<p class="text-muted">Enter a search term to find posts.</p>';
+          searchStats.innerHTML = '';
+          return;
+        }
+
+        searchResults.innerHTML = `
+      <div class="text-center py-5">
+        <div class="spinner-border text-warning" role="status">
+          <span class="visually-hidden">Searching...</span>
+        </div>
+      </div>
+    `;
+
+        try {
+          
+          const response = await fetch('/index.json');
+          const posts = await response.json();
+
+          
+          const queryLower = query.toLowerCase();
+          const words = queryLower.split(/\s+/).filter(w => w.length > 0);
+
+          const results = posts.filter(post => {
+            const searchableText = [
+              post.title || '',
+              post.content || '',
+              post.summary || '',
+              (post.tags || []).join(' '),
+              (post.categories || []).join(' '),
+            ]
+              .join(' ')
+              .toLowerCase();
+
+            return words.every(word => searchableText.includes(word));
+          });
+
+          
+          results.sort((a, b) => {
+            const aTitle = (a.title || '').toLowerCase();
+            const bTitle = (b.title || '').toLowerCase();
+            let aScore = 0,
+              bScore = 0;
+
+            words.forEach(word => {
+              if (aTitle.includes(word)) aScore += 10;
+              if (bTitle.includes(word)) bScore += 10;
+            });
+
+            return bScore - aScore;
+          });
+
+          
+          searchStats.innerHTML = `Found ${results.length} result${results.length !== 1 ? 's' : ''} for "<strong>${query}</strong>"`;
+
+          
+          if (results.length === 0) {
+            searchResults.innerHTML = `
+          <div class="alert alert-warning">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            No posts found. Try different keywords.
+          </div>
+        `;
+          } else {
+            searchResults.innerHTML = results
+              .map(
+                post => `
+          <article class="search-result mb-4 p-3 border-start border-3 border-warning">
+            <h3 class="h4 mb-2">
+              <a href="${post.permalink}" class="text-decoration-none">
+                ${highlight(post.title || 'Untitled', query)}
+              </a>
+            </h3>
+            <div class="text-muted small mb-2">
+              <i class="far fa-calendar me-1"></i> ${formatDate(post.date)}
+              ${
+                post.categories && post.categories.length > 0
+                  ? `<span class="ms-3"><i class="far fa-folder me-1"></i> ${post.categories.join(', ')}</span>`
+                  : ''
+              }
+            </div>
+            <p class="mb-2">${highlight(post.summary || '', query)}</p>
+            ${
+              post.tags && post.tags.length > 0
+                ? `<div class="tags">
+                ${post.tags
+                  .map(
+                    tag =>
+                      `<span class="badge bg-secondary me-1">${tag}</span>`,
+                  )
+                  .join('')}
+              </div>`
+                : ''
+            }
+          </article>
+        `,
+              )
+              .join('');
+          }
+        } catch (error) {
+          console.error('Search error:', error);
+          searchResults.innerHTML = `
+        <div class="alert alert-danger">
+          <i class="fas fa-exclamation-circle me-2"></i>
+          An error occurred while searching. Please try again later.
+        </div>
+      `;
+        }
+      }
+
+      
+      const query = getQueryParam('q');
+      if (query) {
+        searchInput.value = query;
+        performSearch(query);
+      } else {
+        searchResults.innerHTML = '<p>Enter a search term to find posts.</p>';
+      }
+
+      
+      searchInput.form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const newQuery = searchInput.value;
+        if (newQuery) {
+          const newUrl = new URL(window.location);
+          newUrl.searchParams.set('q', newQuery);
+          window.history.pushState({}, '', newUrl);
+          performSearch(newQuery);
+        }
+      });
+    })();
+  </script>
+
+  </body>
+</html>

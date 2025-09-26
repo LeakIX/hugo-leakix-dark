@@ -1,0 +1,178 @@
+name: CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: ['**']
+  workflow_dispatch:
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os:
+          - macos-latest
+          - macos-13
+          - macos-14
+          - macos-15
+          - ubuntu-22.04
+          - ubuntu-24.04
+        include:
+          - os: ubuntu-24.04
+            runs-on: ubuntu-24.04-arm
+            name-suffix: '-arm'
+
+    runs-on: ${{ matrix.runs-on || matrix.os }}
+    name: Test on ${{ matrix.os }}${{ matrix.name-suffix || '' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: make install-deps
+
+      - name: Check trailing whitespace
+        run: make check-trailing-whitespace
+
+      - name: Check code formatting
+        run: make check-prettify
+
+      - name: Build example site
+        run: make build-example
+
+      - name: Run all tests
+        run: make test
+
+      - name: Upload artifacts
+        if:
+          success() && matrix.os == 'ubuntu-24.04' && matrix.name-suffix !=
+          '-arm'
+        uses: actions/upload-artifact@v4
+        with:
+          name: example-site
+          path: exampleSite/public/
+
+  deploy-preview:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: make install-deps
+
+      - name: Format code
+        run: |
+          make prettify
+          make fix-trailing-whitespace
+
+      - name: Build example site for preview
+        run: make build-example
+
+      - name: Deploy to GitHub Pages (PR Preview)
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./exampleSite/public
+          destination_dir: pr-${{ github.event.pull_request.number }}
+
+      - name: Comment PR with preview link
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const previewUrl = `https://${context.repo.owner}.github.io/${context.repo.repo}/pr-${prNumber}/`;
+
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body: `🚀 Preview deployment ready!\n\n[View Preview](${previewUrl})`
+            });
+
+  release:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: make install-deps
+
+      - name: Format code
+        run: |
+          make prettify
+          make fix-trailing-whitespace
+
+      - name: Build example site for GitHub Pages
+        run: |
+          cd exampleSite
+          hugo --themesDir .. --baseURL="https://leakix.github.io/leakix-dark-theme/" --destination public
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./exampleSite/public
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

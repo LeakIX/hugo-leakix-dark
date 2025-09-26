@@ -1,0 +1,26 @@
+{
+  "name": "leakix-dark-theme",
+  "version": "1.0.0",
+  "description": "A modern, responsive dark theme for Hugo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LeakIX/leakix-dark-theme"
+  },
+  "keywords": [
+    "hugo",
+    "theme",
+    "dark",
+    "responsive"
+  ],
+  "author": "LeakIX Team",
+  "license": "MIT",
+  "scripts": {
+    "prettify": "make prettify",
+    "check-prettify": "make check-prettify",
+    "test": "make test"
+  },
+  "devDependencies": {
+    "prettier": "^3.1.1",
+    "prettier-plugin-go-template": "^0.0.15"
+  }
+}

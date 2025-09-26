@@ -1,0 +1,104 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'LeakIX Dark Theme Demo'
+theme = 'leakix-dark'
+
+[pagination]
+  pagerSize = 6
+
+[params]
+  # Site branding
+  siteName = "Dark Theme Demo"
+  siteDescription = "A demonstration of the LeakIX Dark Theme for Hugo"
+  logo = "/images/logo.png"
+  favicon = "/favicon.ico"
+
+  # Colors (using LeakIX blog colors)
+  primaryColor = "#fab741"
+  secondaryColor = "#ff8c00"
+  accentColor = "#e09b2a"
+  textColor = "#ffffff"
+  backgroundColor = "#181f27"
+  backgroundDarkColor = "#090e15"
+  backgroundLightColor = "#353a40"
+  cardBackgroundColor = "#1f2731"
+  footerBackgroundColor = "#010203"
+  textLightColor = "#707070"
+  textDarkColor = "#090e15"
+  borderColor = "#2a3138"
+
+  # Typography
+  fontFamily = "'JetBrains Mono', 'Courier New', monospace"
+
+  # Social links
+  twitter = "https://twitter.com/example"
+  github = "https://github.com/example"
+  linkedin = "https://linkedin.com/in/example"
+
+  # Features
+  enableSearch = true
+  enableShareButtons = true
+  enableRelatedPosts = true
+  enableSyntaxHighlighting = true
+
+  # SEO
+  author = "Your Name"
+  keywords = ["blog", "technology", "programming"]
+
+  # Footer
+  copyright = "© 2024 Your Name. All rights reserved."
+  footerText = "Powered by Hugo and LeakIX Dark Theme"
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    name = "Posts"
+    url = "/posts/"
+    weight = 2
+
+  [[menu.main]]
+    name = "Categories"
+    url = "/categories/"
+    weight = 3
+
+  [[menu.main]]
+    name = "Tags"
+    url = "/tags/"
+    weight = 4
+
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 5
+
+  [[menu.main]]
+    name = "Search"
+    url = "/search/"
+    weight = 6
+
+  [[menu.main]]
+    name = "AI Integration"
+    url = "/ai-integration/"
+    weight = 7
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  author = "authors"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  section = ["HTML", "RSS", "JSON"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = "monokai"
+    lineNos = true
+    lineNumbersInTable = true

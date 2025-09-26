@@ -1,0 +1,29 @@
+{{ if site.Params }}
+<style>
+  :root {
+    {{ with site.Params.primaryColor }}--primary-color: {{ . }};{{ end }}
+    {{ with site.Params.secondaryColor }}--secondary-color: {{ . }};{{ end }}
+    {{ with site.Params.accentColor }}--accent-color: {{ . }};{{ end }}
+    {{ with site.Params.textColor }}--text-color: {{ . }};{{ end }}
+    {{ with site.Params.backgroundColor }}--bg-color: {{ . }};{{ end }}
+    {{ with site.Params.backgroundDarkColor }}--bg-dark-color: {{ . }};{{ end }}
+    {{ with site.Params.backgroundLightColor }}--bg-light-color: {{ . }};{{ end }}
+    {{ with site.Params.cardBackgroundColor }}--card-bg-color: {{ . }};{{ end }}
+    {{ with site.Params.footerBackgroundColor }}--footer-bg-color: {{ . }};{{ end }}
+    {{ with site.Params.textLightColor }}--text-light-color: {{ . }};{{ end }}
+    {{ with site.Params.textDarkColor }}--text-dark-color: {{ . }};{{ end }}
+    {{ with site.Params.borderColor }}--border-color: {{ . }};{{ end }}
+    {{ with site.Params.successColor }}--success-color: {{ . }};{{ end }}
+    {{ with site.Params.dangerColor }}--danger-color: {{ . }};{{ end }}
+    {{ with site.Params.warningColor }}--warning-color: {{ . }};{{ end }}
+    {{ with site.Params.infoColor }}--info-color: {{ . }};{{ end }}
+    {{ with site.Params.fontFamily }}--font-family: {{ . }};{{ end }}
+    {{ with site.Params.fontSize }}--font-size: {{ . }};{{ end }}
+    {{ with site.Params.lineHeight }}--line-height: {{ . }};{{ end }}
+    {{ with site.Params.borderRadiusSm }}--radius-sm: {{ . }};{{ end }}
+    {{ with site.Params.borderRadiusMd }}--radius-md: {{ . }};{{ end }}
+    {{ with site.Params.borderRadiusLg }}--radius-lg: {{ . }};{{ end }}
+    {{ with site.Params.borderRadiusXl }}--radius-xl: {{ . }};{{ end }}
+  }
+</style>
+{{ end }}

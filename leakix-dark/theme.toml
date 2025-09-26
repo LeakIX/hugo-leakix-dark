@@ -1,0 +1,13 @@
+name = "LeakIX Dark Theme"
+license = "MIT"
+licenselink = "https://github.com/LeakIX/leakix-dark-theme/blob/main/LICENSE"
+description = "A modern, responsive dark theme for Hugo with built-in search, syntax highlighting, and customizable branding"
+homepage = "https://github.com/LeakIX/leakix-dark-theme"
+demo = "https://leakix.github.io/leakix-dark-theme/"
+tags = ["blog", "dark", "responsive", "bootstrap", "search", "modern", "customizable", "monospace"]
+features = ["responsive", "dark mode", "search", "syntax highlighting", "SEO optimized", "social sharing", "customizable branding"]
+min_version = "0.120.0"
+
+[author]
+  name = "LeakIX Team"
+  homepage = "https://github.com/LeakIX"

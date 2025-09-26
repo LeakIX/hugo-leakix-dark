@@ -1,0 +1,49 @@
+// Theme Configuration Variables
+// These can be overridden via Hugo params
+
+:root {
+  // Primary Colors - can be customized via config
+  --theme-primary: var(--primary-color, #fab741);
+  --theme-secondary: var(--secondary-color, #ff8c00);
+  --theme-accent: var(--accent-color, #e09b2a);
+
+  // Background Colors
+  --theme-bg-main: var(--bg-color, #181f27);
+  --theme-bg-dark: var(--bg-dark-color, #090e15);
+  --theme-bg-light: var(--bg-light-color, #353a40);
+  --theme-bg-card: var(--card-bg-color, #1f2731);
+  --theme-bg-footer: var(--footer-bg-color, #010203);
+
+  // Text Colors
+  --theme-text: var(--text-color, #ffffff);
+  --theme-text-light: var(--text-light-color, #707070);
+  --theme-text-dark: var(--text-dark-color, #090e15);
+
+  // Border Colors
+  --theme-border: var(--border-color, #2a3138);
+
+  // Status Colors
+  --theme-success: var(--success-color, #28a745);
+  --theme-danger: var(--danger-color, #dc3545);
+  --theme-warning: var(--warning-color, #f9b640);
+  --theme-info: var(--info-color, #17a2b8);
+
+  // Typography
+  --theme-font-family: var(--font-family, "Roboto Mono", monospace);
+  --theme-font-size-base: var(--font-size, 16px);
+  --theme-line-height: var(--line-height, 1.6);
+
+  // Spacing
+  --theme-spacing-unit: var(--spacing, 1rem);
+
+  // Border Radius
+  --theme-radius-sm: var(--radius-sm, 4px);
+  --theme-radius-md: var(--radius-md, 8px);
+  --theme-radius-lg: var(--radius-lg, 16px);
+  --theme-radius-xl: var(--radius-xl, 24px);
+
+  // Transitions
+  --theme-transition-fast: var(--transition-fast, 0.2s ease);
+  --theme-transition-normal: var(--transition, 0.3s ease);
+  --theme-transition-slow: var(--transition-slow, 0.5s ease);
+}

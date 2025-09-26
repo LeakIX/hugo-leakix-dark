@@ -1,0 +1,19 @@
+{{ $file := .Get "file" }}
+{{ $code := .Get "code" | default "false" }}
+{{ $lang := .Get "lang" | default "text" }}
+{{ $highlight := .Get "highlight" | default "" }}
+
+{{ if $file }}
+  {{ $content := readFile $file }}
+  {{ if eq $code "true" }}
+    {{ if $highlight }}
+      {{ highlight $content $lang $highlight }}
+    {{ else }}
+      {{ highlight $content $lang }}
+    {{ end }}
+  {{ else }}
+    <pre><code>{{ $content }}</code></pre>
+  {{ end }}
+{{ else }}
+  <p style="color: red;">Error: No file specified for readfile shortcode</p>
+{{ end }}

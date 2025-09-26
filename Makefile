@@ -62,18 +62,26 @@ check-trailing-whitespace: ## Check for trailing whitespace in all files
 build-example: ## Build the example site
 	@echo "Checking Go version..."
 	@go version | grep -q "go1.2[4-9]" || (echo "Error: Go 1.24 or higher is required" && exit 1)
-	@echo "Installing latest Hugo with Go..."
-	@go install -tags extended github.com/gohugoio/hugo@latest
+	@if command -v hugo >/dev/null 2>&1; then \
+		echo "Using existing Hugo: $$(hugo version)"; \
+	else \
+		echo "Installing Hugo with Go..."; \
+		go install -tags extended github.com/gohugoio/hugo@v0.150.1; \
+	fi
 	@echo "Building example site..."
-	@cd exampleSite && $(shell go env GOPATH)/bin/hugo --themesDir .. --baseURL="https://example.com/"
+	@cd exampleSite && hugo --themesDir .. --baseURL="https://leakix.github.io/hugo-leakix-dark/"
 
 serve-example: ## Serve the example site locally
 	@echo "Checking Go version..."
 	@go version | grep -q "go1.2[4-9]" || (echo "Error: Go 1.24 or higher is required" && exit 1)
-	@echo "Installing latest Hugo with Go..."
-	@go install -tags extended github.com/gohugoio/hugo@latest
+	@if command -v hugo >/dev/null 2>&1; then \
+		echo "Using existing Hugo: $$(hugo version)"; \
+	else \
+		echo "Installing Hugo with Go..."; \
+		go install -tags extended github.com/gohugoio/hugo@v0.150.1; \
+	fi
 	@echo "Starting Hugo server for example site..."
-	@cd exampleSite && $(shell go env GOPATH)/bin/hugo server --themesDir .. --buildDrafts --disableFastRender
+	@cd exampleSite && hugo server --themesDir .. --buildDrafts --disableFastRender
 
 test: ## Run all checks
 	@echo "Running all checks..."

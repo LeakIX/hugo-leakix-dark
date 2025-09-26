@@ -46,7 +46,7 @@ jobs:
           path: |
             ~/go/pkg/mod
             ~/go/bin/hugo
-          key: ${{ runner.os }}-go-hugo-${{ env.HUGO_VERSION }}-${{ hashFiles('**/go.sum') }}
+          key: ${{ runner.os }}-go-hugo-${{ env.HUGO_VERSION }}
           restore-keys: |
             ${{ runner.os }}-go-hugo-${{ env.HUGO_VERSION }}-
             ${{ runner.os }}-go-hugo-
@@ -129,7 +129,7 @@ jobs:
           path: |
             ~/go/pkg/mod
             ~/go/bin/hugo
-          key: ${{ runner.os }}-go-hugo-${{ env.HUGO_VERSION }}-${{ hashFiles('**/go.sum') }}
+          key: ${{ runner.os }}-go-hugo-${{ env.HUGO_VERSION }}
           restore-keys: |
             ${{ runner.os }}-go-hugo-${{ env.HUGO_VERSION }}-
             ${{ runner.os }}-go-hugo-
@@ -218,7 +218,7 @@ jobs:
           path: |
             ~/go/pkg/mod
             ~/go/bin/hugo
-          key: ${{ runner.os }}-go-hugo-${{ env.HUGO_VERSION }}-${{ hashFiles('**/go.sum') }}
+          key: ${{ runner.os }}-go-hugo-${{ env.HUGO_VERSION }}
           restore-keys: |
             ${{ runner.os }}-go-hugo-${{ env.HUGO_VERSION }}-
             ${{ runner.os }}-go-hugo-

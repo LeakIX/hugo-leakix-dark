@@ -1,3 +1,3 @@
-module github.com/LeakIX/leakix-dark-theme
+module github.com/LeakIX/hugo-leakix-dark
 
-go 1.18
+go 1.24

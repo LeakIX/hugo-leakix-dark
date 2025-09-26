@@ -3,15 +3,23 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+package-lock.json
+yarn.lock
+.pnpm-debug.log*
 
 # Build outputs
 public/
 resources/
 exampleSite/public/
 exampleSite/resources/
+dist/
+build/
 
-# Hugo build lock
+# Hugo specific
 .hugo_build.lock
+hugo_stats.json
+.hugo/
+data/webpack.json
 
 # Environment files
 .env
@@ -51,9 +59,12 @@ coverage/
 
 # Dependency directories
 jspm_packages/
+bower_components/
+web_modules/
 
 # Optional npm cache directory
 .npm
+.eslintcache
 
 # Optional REPL history
 .node_repl_history
@@ -64,6 +75,47 @@ jspm_packages/
 # Yarn Integrity file
 .yarn-integrity
 
+# TypeScript cache
+*.tsbuildinfo
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
 # Temporary folders
 tmp/
 temp/
+.tmp/
+.temp/
+
+# Hugo module cache
+_vendor/
+
+# Sass cache
+.sass-cache/
+.cache/
+
+# Parcel cache
+.parcel-cache/
+
+# Next.js
+.next/
+out/
+
+# Nuxt.js
+.nuxt/
+
+# Gatsby
+.cache/
+public/
+
+# Svelte
+.svelte-kit/
+
+# Webpack
+.webpack/
+
+# Rollup
+.rollup.cache/

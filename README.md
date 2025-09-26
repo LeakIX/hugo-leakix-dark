@@ -30,7 +30,7 @@ LeakIX security blog, now available as a standalone theme for any Hugo project.
 
 ## Screenshots
 
-![Theme Preview](https://via.placeholder.com/1200x600/181f27/fab741?text=LeakIX+Dark+Theme+Preview)
+![Theme Preview](Screenshot.png)
 
 ## Requirements
 

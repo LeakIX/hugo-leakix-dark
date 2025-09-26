@@ -7,6 +7,9 @@ on:
     branches: ['**']
   workflow_dispatch:
 
+env:
+  HUGO_VERSION: v0.150.1
+
 jobs:
   test:
     strategy:
@@ -50,10 +53,10 @@ jobs:
           # Xcode command line tools should already be available in GitHub Actions
           xcode-select --install 2>/dev/null || true
 
-      - name: Install Hugo 0.150.1
+      - name: Install Hugo ${{ env.HUGO_VERSION }}
         run: |
           # Install Hugo from source using Go (works on both macOS and Linux)
-          CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@v0.150.1
+          CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@${{ env.HUGO_VERSION }}
           echo "$HOME/go/bin" >> $GITHUB_PATH
           hugo version
 
@@ -108,10 +111,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y gcc
 
-      - name: Install Hugo 0.150.1
+      - name: Install Hugo ${{ env.HUGO_VERSION }}
         run: |
           # Install Hugo from source using Go (works on both macOS and Linux)
-          CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@v0.150.1
+          CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@${{ env.HUGO_VERSION }}
           echo "$HOME/go/bin" >> $GITHUB_PATH
           hugo version
 
@@ -179,10 +182,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y gcc
 
-      - name: Install Hugo 0.150.1
+      - name: Install Hugo ${{ env.HUGO_VERSION }}
         run: |
           # Install Hugo from source using Go (works on both macOS and Linux)
-          CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@v0.150.1
+          CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@${{ env.HUGO_VERSION }}
           echo "$HOME/go/bin" >> $GITHUB_PATH
           hugo version
 

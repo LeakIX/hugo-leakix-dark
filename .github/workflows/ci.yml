@@ -46,10 +46,11 @@ jobs:
           path: |
             ~/go/pkg/mod
             ~/go/bin/hugo
-          key: ${{ runner.os }}-go-hugo-${{ env.HUGO_VERSION }}
+          key:
+            ${{ runner.os }}-${{ runner.arch }}-go-hugo-${{ env.HUGO_VERSION }}
           restore-keys: |
-            ${{ runner.os }}-go-hugo-${{ env.HUGO_VERSION }}-
-            ${{ runner.os }}-go-hugo-
+            ${{ runner.os }}-${{ runner.arch }}-go-hugo-${{ env.HUGO_VERSION }}-
+            ${{ runner.os }}-${{ runner.arch }}-go-hugo-
 
       - name: Install build dependencies (Linux)
         if: runner.os == 'Linux'
@@ -67,14 +68,18 @@ jobs:
         run: |
           # Check if Hugo is already cached
           if [ -f "$HOME/go/bin/hugo" ]; then
-            echo "Hugo found in cache"
+            echo "Hugo found in cache for ${{ runner.os }}-${{ runner.arch }}"
             echo "$HOME/go/bin" >> $GITHUB_PATH
             hugo version
           else
-            echo "Installing Hugo from source using Go"
+            echo "Installing Hugo from source using Go for ${{ runner.os }}-${{ runner.arch }}"
+            echo "Go version: $(go version)"
+            echo "GOOS: $(go env GOOS)"
+            echo "GOARCH: $(go env GOARCH)"
             CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@${{ env.HUGO_VERSION }}
             echo "$HOME/go/bin" >> $GITHUB_PATH
             hugo version
+            echo "Hugo binary size: $(ls -lh $HOME/go/bin/hugo | awk '{print $5}')"
           fi
 
       - name: Setup Node.js
@@ -129,10 +134,11 @@ jobs:
           path: |
             ~/go/pkg/mod
             ~/go/bin/hugo
-          key: ${{ runner.os }}-go-hugo-${{ env.HUGO_VERSION }}
+          key:
+            ${{ runner.os }}-${{ runner.arch }}-go-hugo-${{ env.HUGO_VERSION }}
           restore-keys: |
-            ${{ runner.os }}-go-hugo-${{ env.HUGO_VERSION }}-
-            ${{ runner.os }}-go-hugo-
+            ${{ runner.os }}-${{ runner.arch }}-go-hugo-${{ env.HUGO_VERSION }}-
+            ${{ runner.os }}-${{ runner.arch }}-go-hugo-
 
       - name: Install build dependencies (Linux)
         run: |
@@ -143,14 +149,18 @@ jobs:
         run: |
           # Check if Hugo is already cached
           if [ -f "$HOME/go/bin/hugo" ]; then
-            echo "Hugo found in cache"
+            echo "Hugo found in cache for ${{ runner.os }}-${{ runner.arch }}"
             echo "$HOME/go/bin" >> $GITHUB_PATH
             hugo version
           else
-            echo "Installing Hugo from source using Go"
+            echo "Installing Hugo from source using Go for ${{ runner.os }}-${{ runner.arch }}"
+            echo "Go version: $(go version)"
+            echo "GOOS: $(go env GOOS)"
+            echo "GOARCH: $(go env GOARCH)"
             CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@${{ env.HUGO_VERSION }}
             echo "$HOME/go/bin" >> $GITHUB_PATH
             hugo version
+            echo "Hugo binary size: $(ls -lh $HOME/go/bin/hugo | awk '{print $5}')"
           fi
 
       - name: Setup Node.js
@@ -218,10 +228,11 @@ jobs:
           path: |
             ~/go/pkg/mod
             ~/go/bin/hugo
-          key: ${{ runner.os }}-go-hugo-${{ env.HUGO_VERSION }}
+          key:
+            ${{ runner.os }}-${{ runner.arch }}-go-hugo-${{ env.HUGO_VERSION }}
           restore-keys: |
-            ${{ runner.os }}-go-hugo-${{ env.HUGO_VERSION }}-
-            ${{ runner.os }}-go-hugo-
+            ${{ runner.os }}-${{ runner.arch }}-go-hugo-${{ env.HUGO_VERSION }}-
+            ${{ runner.os }}-${{ runner.arch }}-go-hugo-
 
       - name: Install build dependencies (Linux)
         run: |
@@ -232,14 +243,18 @@ jobs:
         run: |
           # Check if Hugo is already cached
           if [ -f "$HOME/go/bin/hugo" ]; then
-            echo "Hugo found in cache"
+            echo "Hugo found in cache for ${{ runner.os }}-${{ runner.arch }}"
             echo "$HOME/go/bin" >> $GITHUB_PATH
             hugo version
           else
-            echo "Installing Hugo from source using Go"
+            echo "Installing Hugo from source using Go for ${{ runner.os }}-${{ runner.arch }}"
+            echo "Go version: $(go version)"
+            echo "GOOS: $(go env GOOS)"
+            echo "GOARCH: $(go env GOARCH)"
             CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@${{ env.HUGO_VERSION }}
             echo "$HOME/go/bin" >> $GITHUB_PATH
             hugo version
+            echo "Hugo binary size: $(ls -lh $HOME/go/bin/hugo | awk '{print $5}')"
           fi
 
       - name: Setup Node.js

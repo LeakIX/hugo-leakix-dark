@@ -6,7 +6,8 @@ LeakIX security blog, now available as a standalone theme for any Hugo project.
 
 ## Live Demo
 
-- **Demo Site**: [https://leakix.github.io/hugo-leakix-dark/](https://leakix.github.io/hugo-leakix-dark/)
+- **Demo Site**:
+  [https://leakix.github.io/hugo-leakix-dark/](https://leakix.github.io/hugo-leakix-dark/)
 - **Live Example**: [blog.leakix.net](https://blog.leakix.net) - The LeakIX
   security blog uses this theme
 

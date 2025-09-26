@@ -38,11 +38,24 @@ jobs:
         with:
           go-version: '1.24'
 
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
-        with:
-          hugo-version: '0.134.0'
-          extended: true
+      - name: Install build dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc
+
+      - name: Install build dependencies (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          # Xcode command line tools should already be available in GitHub Actions
+          xcode-select --install 2>/dev/null || true
+
+      - name: Install Hugo 0.150.1
+        run: |
+          # Install Hugo from source using Go (works on both macOS and Linux)
+          CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@v0.150.1
+          echo "$HOME/go/bin" >> $GITHUB_PATH
+          hugo version
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -90,11 +103,17 @@ jobs:
         with:
           go-version: '1.24'
 
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
-        with:
-          hugo-version: '0.134.0'
-          extended: true
+      - name: Install build dependencies (Linux)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc
+
+      - name: Install Hugo 0.150.1
+        run: |
+          # Install Hugo from source using Go (works on both macOS and Linux)
+          CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@v0.150.1
+          echo "$HOME/go/bin" >> $GITHUB_PATH
+          hugo version
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -155,11 +174,17 @@ jobs:
         with:
           go-version: '1.24'
 
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
-        with:
-          hugo-version: '0.134.0'
-          extended: true
+      - name: Install build dependencies (Linux)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc
+
+      - name: Install Hugo 0.150.1
+        run: |
+          # Install Hugo from source using Go (works on both macOS and Linux)
+          CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@v0.150.1
+          echo "$HOME/go/bin" >> $GITHUB_PATH
+          hugo version
 
       - name: Setup Node.js
         uses: actions/setup-node@v4

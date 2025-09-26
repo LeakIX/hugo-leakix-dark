@@ -41,6 +41,7 @@ jobs:
           go-version: '1.24'
 
       - name: Cache Go modules and Hugo binary
+        id: cache-hugo
         uses: actions/cache@v4
         with:
           path: |
@@ -48,9 +49,6 @@ jobs:
             ~/go/bin/hugo
           key:
             ${{ runner.os }}-${{ runner.arch }}-go-hugo-${{ env.HUGO_VERSION }}
-          restore-keys: |
-            ${{ runner.os }}-${{ runner.arch }}-go-hugo-${{ env.HUGO_VERSION }}-
-            ${{ runner.os }}-${{ runner.arch }}-go-hugo-
 
       - name: Install build dependencies (Linux)
         if: runner.os == 'Linux'
@@ -66,7 +64,10 @@ jobs:
 
       - name: Install Hugo ${{ env.HUGO_VERSION }}
         run: |
-          # Check if Hugo is already cached
+          echo "Cache hit: ${{ steps.cache-hugo.outputs.cache-hit }}"
+          echo "Cache key: ${{ runner.os }}-${{ runner.arch }}-go-hugo-${{ env.HUGO_VERSION }}"
+
+          # Check if Hugo is already available
           if [ -f "$HOME/go/bin/hugo" ]; then
             echo "Hugo found in cache for ${{ runner.os }}-${{ runner.arch }}"
             echo "$HOME/go/bin" >> $GITHUB_PATH
@@ -80,6 +81,7 @@ jobs:
             echo "$HOME/go/bin" >> $GITHUB_PATH
             hugo version
             echo "Hugo binary size: $(ls -lh $HOME/go/bin/hugo | awk '{print $5}')"
+            echo "Hugo will be cached for future runs"
           fi
 
       - name: Setup Node.js
@@ -129,6 +131,7 @@ jobs:
           go-version: '1.24'
 
       - name: Cache Go modules and Hugo binary
+        id: cache-hugo
         uses: actions/cache@v4
         with:
           path: |
@@ -136,9 +139,6 @@ jobs:
             ~/go/bin/hugo
           key:
             ${{ runner.os }}-${{ runner.arch }}-go-hugo-${{ env.HUGO_VERSION }}
-          restore-keys: |
-            ${{ runner.os }}-${{ runner.arch }}-go-hugo-${{ env.HUGO_VERSION }}-
-            ${{ runner.os }}-${{ runner.arch }}-go-hugo-
 
       - name: Install build dependencies (Linux)
         run: |
@@ -147,7 +147,10 @@ jobs:
 
       - name: Install Hugo ${{ env.HUGO_VERSION }}
         run: |
-          # Check if Hugo is already cached
+          echo "Cache hit: ${{ steps.cache-hugo.outputs.cache-hit }}"
+          echo "Cache key: ${{ runner.os }}-${{ runner.arch }}-go-hugo-${{ env.HUGO_VERSION }}"
+
+          # Check if Hugo is already available
           if [ -f "$HOME/go/bin/hugo" ]; then
             echo "Hugo found in cache for ${{ runner.os }}-${{ runner.arch }}"
             echo "$HOME/go/bin" >> $GITHUB_PATH
@@ -161,6 +164,7 @@ jobs:
             echo "$HOME/go/bin" >> $GITHUB_PATH
             hugo version
             echo "Hugo binary size: $(ls -lh $HOME/go/bin/hugo | awk '{print $5}')"
+            echo "Hugo will be cached for future runs"
           fi
 
       - name: Setup Node.js
@@ -223,6 +227,7 @@ jobs:
           go-version: '1.24'
 
       - name: Cache Go modules and Hugo binary
+        id: cache-hugo
         uses: actions/cache@v4
         with:
           path: |
@@ -230,9 +235,6 @@ jobs:
             ~/go/bin/hugo
           key:
             ${{ runner.os }}-${{ runner.arch }}-go-hugo-${{ env.HUGO_VERSION }}
-          restore-keys: |
-            ${{ runner.os }}-${{ runner.arch }}-go-hugo-${{ env.HUGO_VERSION }}-
-            ${{ runner.os }}-${{ runner.arch }}-go-hugo-
 
       - name: Install build dependencies (Linux)
         run: |
@@ -241,7 +243,10 @@ jobs:
 
       - name: Install Hugo ${{ env.HUGO_VERSION }}
         run: |
-          # Check if Hugo is already cached
+          echo "Cache hit: ${{ steps.cache-hugo.outputs.cache-hit }}"
+          echo "Cache key: ${{ runner.os }}-${{ runner.arch }}-go-hugo-${{ env.HUGO_VERSION }}"
+
+          # Check if Hugo is already available
           if [ -f "$HOME/go/bin/hugo" ]; then
             echo "Hugo found in cache for ${{ runner.os }}-${{ runner.arch }}"
             echo "$HOME/go/bin" >> $GITHUB_PATH
@@ -255,6 +260,7 @@ jobs:
             echo "$HOME/go/bin" >> $GITHUB_PATH
             hugo version
             echo "Hugo binary size: $(ls -lh $HOME/go/bin/hugo | awk '{print $5}')"
+            echo "Hugo will be cached for future runs"
           fi
 
       - name: Setup Node.js

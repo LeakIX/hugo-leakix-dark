@@ -40,6 +40,17 @@ jobs:
         with:
           go-version: '1.24'
 
+      - name: Cache Go modules and Hugo binary
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/go/pkg/mod
+            ~/go/bin/hugo
+          key: ${{ runner.os }}-go-hugo-${{ env.HUGO_VERSION }}-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-hugo-${{ env.HUGO_VERSION }}-
+            ${{ runner.os }}-go-hugo-
+
       - name: Install build dependencies (Linux)
         if: runner.os == 'Linux'
         run: |
@@ -54,10 +65,17 @@ jobs:
 
       - name: Install Hugo ${{ env.HUGO_VERSION }}
         run: |
-          # Install Hugo from source using Go (works on both macOS and Linux)
-          CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@${{ env.HUGO_VERSION }}
-          echo "$HOME/go/bin" >> $GITHUB_PATH
-          hugo version
+          # Check if Hugo is already cached
+          if [ -f "$HOME/go/bin/hugo" ]; then
+            echo "Hugo found in cache"
+            echo "$HOME/go/bin" >> $GITHUB_PATH
+            hugo version
+          else
+            echo "Installing Hugo from source using Go"
+            CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@${{ env.HUGO_VERSION }}
+            echo "$HOME/go/bin" >> $GITHUB_PATH
+            hugo version
+          fi
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -105,6 +123,17 @@ jobs:
         with:
           go-version: '1.24'
 
+      - name: Cache Go modules and Hugo binary
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/go/pkg/mod
+            ~/go/bin/hugo
+          key: ${{ runner.os }}-go-hugo-${{ env.HUGO_VERSION }}-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-hugo-${{ env.HUGO_VERSION }}-
+            ${{ runner.os }}-go-hugo-
+
       - name: Install build dependencies (Linux)
         run: |
           sudo apt-get update
@@ -112,10 +141,17 @@ jobs:
 
       - name: Install Hugo ${{ env.HUGO_VERSION }}
         run: |
-          # Install Hugo from source using Go (works on both macOS and Linux)
-          CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@${{ env.HUGO_VERSION }}
-          echo "$HOME/go/bin" >> $GITHUB_PATH
-          hugo version
+          # Check if Hugo is already cached
+          if [ -f "$HOME/go/bin/hugo" ]; then
+            echo "Hugo found in cache"
+            echo "$HOME/go/bin" >> $GITHUB_PATH
+            hugo version
+          else
+            echo "Installing Hugo from source using Go"
+            CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@${{ env.HUGO_VERSION }}
+            echo "$HOME/go/bin" >> $GITHUB_PATH
+            hugo version
+          fi
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -176,6 +212,17 @@ jobs:
         with:
           go-version: '1.24'
 
+      - name: Cache Go modules and Hugo binary
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/go/pkg/mod
+            ~/go/bin/hugo
+          key: ${{ runner.os }}-go-hugo-${{ env.HUGO_VERSION }}-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-hugo-${{ env.HUGO_VERSION }}-
+            ${{ runner.os }}-go-hugo-
+
       - name: Install build dependencies (Linux)
         run: |
           sudo apt-get update
@@ -183,10 +230,17 @@ jobs:
 
       - name: Install Hugo ${{ env.HUGO_VERSION }}
         run: |
-          # Install Hugo from source using Go (works on both macOS and Linux)
-          CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@${{ env.HUGO_VERSION }}
-          echo "$HOME/go/bin" >> $GITHUB_PATH
-          hugo version
+          # Check if Hugo is already cached
+          if [ -f "$HOME/go/bin/hugo" ]; then
+            echo "Hugo found in cache"
+            echo "$HOME/go/bin" >> $GITHUB_PATH
+            hugo version
+          else
+            echo "Installing Hugo from source using Go"
+            CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@${{ env.HUGO_VERSION }}
+            echo "$HOME/go/bin" >> $GITHUB_PATH
+            hugo version
+          fi
 
       - name: Setup Node.js
         uses: actions/setup-node@v4

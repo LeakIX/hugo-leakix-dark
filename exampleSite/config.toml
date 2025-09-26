@@ -1,4 +1,4 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://leakix.github.io/hugo-leakix-dark/'
 languageCode = 'en-us'
 title = 'LeakIX Dark Theme Demo'
 theme = 'leakix-dark'

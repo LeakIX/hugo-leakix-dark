@@ -111,7 +111,6 @@ jobs:
           name: example-site
           path: exampleSite/public/
 
-
   deploy-pages:
     needs: test
     runs-on: ubuntu-latest

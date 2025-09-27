@@ -20,13 +20,10 @@ jobs:
           - macos-15
           - ubuntu-22.04
           - ubuntu-24.04
-        include:
-          - os: ubuntu-24.04
-            runs-on: ubuntu-24.04-arm
-            name-suffix: '-arm'
+          - ubuntu-24.04-arm
 
-    runs-on: ${{ matrix.runs-on || matrix.os }}
-    name: Test on ${{ matrix.os }}${{ matrix.name-suffix || '' }}
+    runs-on: ${{ matrix.os }}
+    name: Test on ${{ matrix.os }}
 
     steps:
       - name: Checkout repository

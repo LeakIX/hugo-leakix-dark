@@ -92,7 +92,7 @@
 
         try {
           // Fetch the search index
-          const response = await fetch('/index.json');
+          const response = await fetch('{{ "index.json" | relURL }}');
           const posts = await response.json();
 
           // Search logic

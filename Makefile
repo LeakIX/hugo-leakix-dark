@@ -95,6 +95,9 @@ install-deps: ## Install npm dependencies
 	@npm install
 	@echo "✓ Dependencies installed!"
 
+cancel-long-runs: ## Cancel CI runs longer than 2 minutes
+	@./scripts/cancel-long-runs.sh
+
 clean: ## Clean build artifacts
 	@echo "Cleaning build artifacts..."
 	@rm -rf exampleSite/public exampleSite/resources

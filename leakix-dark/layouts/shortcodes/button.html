@@ -1,0 +1,20 @@
+{{/* Button shortcode - creates styled button links
+  Usage: {{< button "path" "text"
+>}}
+Example:
+{{< button "docs/" "Read the Docs" >}}
+*/}}
+{{ $path := .Get 0 }}
+{{ $text := .Get 1 }}
+{{ if and $path $text }}
+  {{ $href := $path }}
+  {{ if not (or (hasPrefix $path "#") (hasPrefix $path "http://") (hasPrefix $path "https://")) }}
+    {{ $href = $path | relURL }}
+  {{ end }}
+  <a href="{{ $href }}" class="shortcode-button">{{ $text }}</a>
+{{ else }}
+  <div class="alert alert-danger">
+    <strong>Button Shortcode Error:</strong>
+    Both path and text parameters are required.
+  </div>
+{{ end }}

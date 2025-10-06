@@ -1,0 +1,7 @@
+{{/* Block shortcode - creates grid container for columns
+  Usage: block "grid-2" with nested column shortcodes
+*/}}
+{{ $class := .Get 0 | default "grid-2" }}
+<div class="shortcode-block shortcode-{{ $class }}">
+  {{ .Inner }}
+</div>

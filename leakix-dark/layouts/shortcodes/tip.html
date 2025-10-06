@@ -1,0 +1,10 @@
+{{/* Tip shortcode - creates info/warning boxes with markdown support
+  Usage: {{< tip
+>}}content{{< /tip >}}
+{{< tip "warning" >}}content{{< /tip >}}
+*/}}
+{{ $type := .Get 0 | default "info" }}
+{{ $class := cond (eq $type "warning") "shortcode-tip-warning" "shortcode-tip-info" }}
+<div class="shortcode-tip {{ $class }}">
+  {{ .Inner | .Page.RenderString }}
+</div>

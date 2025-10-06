@@ -1,0 +1,7 @@
+{{/* Column shortcode - creates a column within a block
+  Usage: {{< column
+>}}content{{< /column >}}
+Must be nested within a block shortcode */}}
+<div class="shortcode-column">
+  {{ .Inner | .Page.RenderString }}
+</div>

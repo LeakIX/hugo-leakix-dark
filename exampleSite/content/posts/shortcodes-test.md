@@ -44,7 +44,8 @@ This website contains documentation on how to use the engine and its features.
 
 {{< button "#" "Read the Docs" >}} {{< /column >}}
 
-{{< column >}} ![diy](/images/leakix-welcome.png) {{< /column >}} {{< /block >}}
+{{< column >}} ![diy](/hugo-leakix-dark/images/leakix-welcome.png)
+{{< /column >}} {{< /block >}}
 
 ## Multiple Tips Test
 

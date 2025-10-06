@@ -4,7 +4,7 @@
 {{< tip "warning" >}}content{{< /tip >}}
 */}}
 {{ $type := .Get 0 | default "info" }}
-{{ $class := cond (eq $type "warning") "shortcode-tip-warning" "shortcode-tip-info" }}
-<div class="shortcode-tip {{ $class }}">
+{{ $class := cond (eq $type "warning") "tip tip_warning" "tip" }}
+<div class="{{ $class }}">
   {{ .Inner | .Page.RenderString }}
 </div>

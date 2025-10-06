@@ -1,48 +1,57 @@
 // Shortcodes styles
 
-// Tip shortcode - info/warning boxes
-.shortcode-tip {
-  padding: 1rem 1.25rem;
+// Tip shortcode - info/warning boxes (matching production docs.leakix.net)
+.tip {
+  padding: 1.5rem 1rem 1.5rem 1.5rem;
   margin: 1.5rem 0;
-  border-radius: 0 4px 4px 0;
-  border-left: 4px solid;
+  border-left: 0.2rem solid $lkx-accent;
   position: relative;
+  background: $lkx-card-bg;
 
   // Support markdown content styling
+  blockquote {
+    padding: 0;
+    margin: 0;
+    border: none;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  p:first-child,
+  p ~ p {
+    padding-top: 0;
+  }
+
   p:last-child {
-    margin-bottom: 0;
+    padding-bottom: 0;
   }
 
-  code {
-    background-color: rgba(0, 0, 0, 0.2);
-  }
-}
-
-.shortcode-tip-info {
-  background-color: rgba($lkx-accent, 0.15);
-  border-color: $lkx-accent;
-  color: $lkx-text;
-
+  // Icon circle
   &::before {
-    content: "\2139\FE0F"; // Info icon
+    content: "";
     position: absolute;
-    left: -0.75rem;
-    top: 0.85rem;
-    font-size: 1.25rem;
+    left: -0.85rem;
+    top: 1.5rem;
+    z-index: 3;
+    padding: 0.75rem;
+    transform-origin: 50% 50%;
+    border-radius: 50%;
+    background-color: $lkx-accent;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>');
+    background-size: 12%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
   }
 }
 
-.shortcode-tip-warning {
-  background-color: rgba($lkx-medium, 0.15);
+.tip_warning {
   border-color: $lkx-medium;
-  color: $lkx-text;
 
   &::before {
-    content: "\26A0\FE0F"; // Warning icon
-    position: absolute;
-    left: -0.75rem;
-    top: 0.85rem;
-    font-size: 1.25rem;
+    background-color: $lkx-medium;
+    transform: rotate(180deg);
   }
 }
 

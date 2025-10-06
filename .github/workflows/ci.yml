@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  HUGO_VERSION: v0.150.1
+  HUGO_VERSION: v0.151.0
 
 jobs:
   test:
@@ -35,7 +35,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.24'
+          go-version: '1.25'
 
       - name: Cache Go modules and Hugo binary
         id: cache-hugo
@@ -130,7 +130,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.24'
+          go-version: '1.25'
 
       - name: Cache Go modules and Hugo binary
         id: cache-hugo

@@ -21,7 +21,7 @@ echo "$long_runs" | while read -r run_id; do
         title=$(echo "$run_info" | jq -r '.displayTitle')
         created=$(echo "$run_info" | jq -r '.createdAt')
         event=$(echo "$run_info" | jq -r '.event')
-        
+
         echo "Cancelling run $run_id: '$title' (event: $event, created: $created)"
         gh run cancel "$run_id"
     fi

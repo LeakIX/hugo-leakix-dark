@@ -4,7 +4,7 @@
 .shortcode-tip {
   padding: 1rem 1.25rem;
   margin: 1.5rem 0;
-  border-radius: 8px;
+  border-radius: 0 4px 4px 0;
   border-left: 4px solid;
   position: relative;
 
@@ -19,7 +19,7 @@
 }
 
 .shortcode-tip-info {
-  background-color: rgba($lkx-accent, 0.1);
+  background-color: rgba($lkx-accent, 0.15);
   border-color: $lkx-accent;
   color: $lkx-text;
 
@@ -33,7 +33,7 @@
 }
 
 .shortcode-tip-warning {
-  background-color: rgba($lkx-medium, 0.1);
+  background-color: rgba($lkx-medium, 0.15);
   border-color: $lkx-medium;
   color: $lkx-text;
 

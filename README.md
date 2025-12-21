@@ -34,7 +34,7 @@ LeakIX security blog, now available as a standalone theme for any Hugo project.
 
 ## Requirements
 
-- Hugo Extended version >= 0.150.1
+- Hugo Extended version >= 0.153.0
 - Node.js >= 20 (for development tools)
 
 ## Installation

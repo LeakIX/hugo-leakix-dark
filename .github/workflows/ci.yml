@@ -103,7 +103,7 @@ jobs:
         if:
           success() && matrix.os == 'ubuntu-latest' && matrix.name-suffix !=
           '-arm'
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: example-site
           path: exampleSite/public/

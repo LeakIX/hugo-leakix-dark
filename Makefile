@@ -66,7 +66,7 @@ build-example: ## Build the example site
 		echo "Using existing Hugo: $$(hugo version)"; \
 	else \
 		echo "Installing Hugo with Go..."; \
-		go install -tags extended github.com/gohugoio/hugo@v0.150.1; \
+		go install -tags extended github.com/gohugoio/hugo@v0.153.0; \
 	fi
 	@echo "Building example site..."
 	@cd exampleSite && hugo --themesDir .. --baseURL="https://leakix.github.io/hugo-leakix-dark/"
@@ -78,7 +78,7 @@ serve-example: ## Serve the example site locally
 		echo "Using existing Hugo: $$(hugo version)"; \
 	else \
 		echo "Installing Hugo with Go..."; \
-		go install -tags extended github.com/gohugoio/hugo@v0.150.1; \
+		go install -tags extended github.com/gohugoio/hugo@v0.153.0; \
 	fi
 	@echo "Starting Hugo server for example site..."
 	@cd exampleSite && hugo server --themesDir .. --buildDrafts --disableFastRender
